@@ -3,7 +3,7 @@ const API_LANGUAGE = 'pt-br'
 const BUTTON_PLAY = ''
 
 const LIST_MOVIES = ['354912', '177572', '1022796', '901362', '976573', '508947', '150540', '568124', '10681', '482321', '718789', '431693', '46195', '62214', '12', '49013', '420818', '260513', '82690', '62177']
-const VIDEO_MOVIES = ['354912', '177572', '1022796', '901362', '976573', '508947', '150540', '568124', '10681', '482321', '718789', '431693', '46195', '62214', '12', '49013', '420818', '260513', '82690', '62177']
+const video = 'assets/background1.mp4'
 
 function getUrlMovie(movieId) {
     return `https://api.themoviedb.org/3/movie/${movieId}?language=${API_LANGUAGE}&api_key=${API_KEY}`
@@ -11,9 +11,8 @@ function getUrlMovie(movieId) {
 
 const moviesList = document.getElementById('movies__li')
 
-function setMainMovie(movieId) {
+async function setMainMovie(movieId) {
     fetch(getUrlMovie(movieId)).then(response => response.json()).then(data => {
-        // const app = document.getElementById('app')
         const bgI = document.getElementById('bgI')
         const title = document.querySelector('.movie h1')
         const description = document.querySelector('.movie p')
@@ -29,8 +28,29 @@ function setMainMovie(movieId) {
             
         const image = `https://image.tmdb.org/t/p/original${data.backdrop_path}`
         bgI.setAttribute('src', `${image}`)
-        
+        f1(movieId)
+        bgI.style.display = "flex"
     })
+}
+
+function resolveAfter2Seconds(x) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(x);
+      }, 10000);
+    });
+}
+
+async function f1(movieId) {
+    const bgI = document.getElementById('bgI');
+    const bg = document.getElementById('background');
+    const vd = document.getElementById('videoC');
+
+    const x = await resolveAfter2Seconds(10);
+    vd.innerHTML = `<source id="campoVideo" src="assets/${movieId}.mp4" type="video/mp4">`
+    bgI.style.display = "none";
+
+    console.log(video);
 }
 
 function creteButtonMovie(movieId) {
