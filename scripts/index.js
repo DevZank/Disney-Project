@@ -28,30 +28,30 @@ async function setMainMovie(movieId) {
             
         const image = `https://image.tmdb.org/t/p/original${data.backdrop_path}`
         bgI.setAttribute('src', `${image}`)
-        f1(movieId)
-        bgI.style.display = "flex"
+        // f1(movieId)
+        // bgI.style.display = "flex"
     })
 }
 
-function resolveAfter2Seconds(x) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(x);
-      }, 10000);
-    });
-}
+// function resolveAfter2Seconds(x) {
+//     return new Promise((resolve) => {
+//       setTimeout(() => {
+//         resolve(x);
+//       }, 10000);
+//     });
+// }
 
-async function f1(movieId) {
-    const bgI = document.getElementById('bgI');
-    const bg = document.getElementById('background');
-    const vd = document.getElementById('videoC');
+// async function f1(movieId) {
+//     const bgI = document.getElementById('bgI');
+//     const bg = document.getElementById('background');
+//     const vd = document.getElementById('videoC');
 
-    const x = await resolveAfter2Seconds(10);
-    vd.innerHTML = `<source id="campoVideo" src="assets/${movieId}.mp4" type="video/mp4">`
-    bgI.style.display = "none";
+//     const x = await resolveAfter2Seconds(10);
+//     vd.innerHTML = `<source id="campoVideo" src="assets/${movieId}.mp4" type="video/mp4">`
+//     bgI.style.display = "none";
 
-    console.log(video);
-}
+//     console.log(video);
+// }
 
 function creteButtonMovie(movieId) {
     const button = document.createElement('button')
